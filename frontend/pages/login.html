@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Sistema Académico</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../assets/css/login.css">
+
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <div class="login-title">
+
+            <i class="bi bi-mortarboard-fill logo-icon"></i>
+
+            <h2>
+                Sistema Académico
+            </h2>
+
+            <p>
+                Inicio de sesión
+            </p>
+
+        </div>
+
+        <form id="loginForm">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Correo Institucional
+                </label>
+
+                <input type="email" class="form-control" id="correo" placeholder="ejemplo@uam.edu.co" required>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Contraseña
+                </label>
+
+                <input type="password" class="form-control" id="password" placeholder="********" required>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-login">
+
+                Ingresar
+
+            </button>
+
+            <div class="text-center mt-3">
+
+                ¿No tienes cuenta?
+
+                <a href="./register.html">
+                    Regístrate aquí
+                </a>
+
+
+
+            </div>
+
+            <div class="text-center mt-3">
+
+                <a href="./recuperar-password.html">
+
+                    ¿Olvidaste tu contraseña?
+
+                </a>
+
+            </div>
+
+        </form>
+
+        <div class="small-text">
+
+            Universidad Autónoma de Manizales
+
+        </div>
+
+    </div>
+
+
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/login.js"></script>
+
+
+
+</body>
+
+</html>

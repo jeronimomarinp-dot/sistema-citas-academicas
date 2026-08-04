@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Coordinador</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../assets/css/global.css">
+
+    <link rel="stylesheet" href="../assets/css/dashboard.coordinador.css">
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <!-- Sidebar -->
+
+        <div class="col-md-2 sidebar">
+
+            <h3>Coordinador</h3>
+
+            <a href="./dashboard.coordinador.html">
+                <i class="bi bi-house"></i>
+                Inicio
+            </a>
+
+            <a href="./ver-citas.html">
+                <i class="bi bi-calendar-event"></i>
+                Gestionar Citas
+            </a>
+
+            <a href="./disponibilidad.html" class="active">
+                <i class="bi bi-clock-history"></i>
+                Disponibilidad
+            </a>
+
+            <a href="#">
+                <i class="bi bi-file-earmark-arrow-up"></i>
+                Subir Documentos
+            </a>
+
+            <a href="#">
+                <i class="bi bi-chat-square-text"></i>
+                Configurar Bot
+            </a>
+
+            <a href="#" id="logout">
+                <i class="bi bi-box-arrow-right"></i>
+                Cerrar sesión
+            </a>
+
+        </div>
+
+        <!-- Contenido -->
+
+        <div class="col-md-10 p-4">
+
+            <h2 class="mb-4">
+
+                Disponibilidad del Coordinador
+
+            </h2>
+
+            <!-- Tarjetas -->
+
+            <div class="row mb-4">
+
+                <div class="col-md-4">
+
+                    <div class="card resumen-card">
+
+                        <div class="card-body">
+
+                            <h6>Horarios Activos</h6>
+
+                            <h2 id="totalHorarios">0</h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card resumen-card">
+
+                        <div class="card-body">
+
+                            <h6>Horas Disponibles</h6>
+
+                            <h2 id="horasDisponibles">0 h</h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card resumen-card">
+
+                        <div class="card-body">
+
+                            <h6>Duración Promedio</h6>
+
+                            <h2 id="duracionPromedio">30 min</h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Botón -->
+
+            <div class="d-flex justify-content-end mb-3">
+
+                <button
+                    class="btn btn-success"
+                    id="btnAgregar">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Agregar Horario
+
+                </button>
+
+            </div>
+
+            <!-- Tabla -->
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-hover align-middle">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Día</th>
+
+                                    <th>Hora Inicio</th>
+
+                                    <th>Hora Fin</th>
+
+                                    <th>Duración</th>
+
+                                    <th>Estado</th>
+
+                                    <th>Acciones</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="tablaDisponibilidad">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal Disponibilidad -->
+
+<div
+    class="modal fade"
+    id="modalDisponibilidad"
+    tabindex="-1"
+    aria-hidden="true">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5
+                    class="modal-title"
+                    id="tituloModal">
+
+                    Agregar Horario
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="formDisponibilidad">
+
+                    <input
+                        type="hidden"
+                        id="idDisponibilidad">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Día
+
+                        </label>
+
+                        <select
+                            id="dia"
+                            class="form-select"
+                            required>
+
+                            <option value="">Seleccione...</option>
+
+                            <option>Lunes</option>
+                            <option>Martes</option>
+                            <option>Miércoles</option>
+                            <option>Jueves</option>
+                            <option>Viernes</option>
+                            <option>Sábado</option>
+                            <option>Domingo</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Hora Inicio
+
+                            </label>
+
+                            <input
+                                type="time"
+                                id="horaInicio"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Hora Fin
+
+                            </label>
+
+                            <input
+                                type="time"
+                                id="horaFin"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Duración
+
+                        </label>
+
+                        <select
+                            id="duracion"
+                            class="form-select">
+
+                            <option value="15">15 minutos</option>
+                            <option value="30" selected>30 minutos</option>
+                            <option value="45">45 minutos</option>
+                            <option value="60">60 minutos</option>
+
+                        </select>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    class="btn btn-success"
+                    id="btnGuardar">
+
+                    Guardar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/disponibilidad.js"></script>
+
+<script>
+    validarRol(['coordinador']);
+</script>
+
+</body>

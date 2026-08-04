@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro de Usuario</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/register.css">
+
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+
+                <div class="card shadow">
+
+                    <div class="card-body p-4">
+
+                        <h2 class="text-center mb-4">
+                            Registro de Estudiante
+                        </h2>
+
+                        <form id="formRegister">
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Nombre Completo
+                                </label>
+
+                                <input type="text" id="nombre" class="form-control" required>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Correo Electrónico
+                                </label>
+
+                                <input type="email" id="correo" class="form-control" required>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Área Académica
+                                </label>
+
+                                <select id="area" class="form-select" required>
+
+                                    <option value="">
+                                        Seleccione un área
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    Contraseña
+                                </label>
+
+                                <input type="password" id="password" class="form-control" required>
+
+                            </div>
+
+                            <div class="mb-4">
+
+                                <label class="form-label">
+                                    Confirmar Contraseña
+                                </label>
+
+                                <input type="password" id="confirmarPassword" class="form-control" required>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                Registrarse
+                            </button>
+
+                        </form>
+
+                        <hr>
+
+                        <p class="text-center">
+
+                            ¿Ya tienes cuenta?
+
+                            <a href="./login.html">
+                                Iniciar Sesión
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/register.js"></script>
+
+</body>
+
+</html>

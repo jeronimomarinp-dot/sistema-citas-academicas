@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ver Citas</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h2>
+                    Citas Agendadas
+                </h2>
+
+                <a href="./dashboard.coordinador.html" class="btn btn-secondary">
+                    Volver
+                </a>
+
+            </div>
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Estudiante</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaCitas">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/ver-citas.js"></script>
+    <script>
+        validarRol(['coordinador']);
+    </script>
+
+</body>
+
+</html>
