@@ -8,16 +8,7 @@ async function cargarAreas() {
 
     try {
 
-        const response = await fetch(
-            'http://localhost:3000/api/areas',
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
-        );
-
-        const areas = await response.json();
+        const areas = await api.get('/areas');
 
         const select =
             document.getElementById('area');
@@ -35,9 +26,9 @@ async function cargarAreas() {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error cargando áreas');
+        alert(error.mensaje || error.message);
 
     }
 
@@ -87,36 +78,21 @@ form.addEventListener('submit', async (e) => {
 
     try {
         console.log(coordinador);
-        const response = await fetch(
-            'http://localhost:3000/api/crear-coordinador',
-            {
-                method: 'POST',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-
-                body: JSON.stringify(coordinador)
-            }
+        const data = await api.post(
+            '/crear-coordinador',
+            coordinador
         );
-
-        const data = await response.json();
 
         alert(data.mensaje);
 
-        if (response.ok) {
-
-            form.reset();
-
-        }
+        form.reset();
 
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error creando coordinador');
+        alert(error.mensaje || error.message);
 
     }
 

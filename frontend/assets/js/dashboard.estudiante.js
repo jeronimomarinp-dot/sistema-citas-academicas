@@ -4,28 +4,25 @@ if (usuario.rol !== 'estudiante') {
 
 const logout = document.getElementById('logout');
 
-logout.addEventListener('click', () => {
+logout.addEventListener('click', cerrarSesion);
+
+function cerrarSesion() {
 
     localStorage.removeItem('usuario');
 
+    localStorage.removeItem('token');
+
     window.location.href = './login.html';
 
-});
+}
 
 async function cargarEstadisticas() {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/estadisticas/estudiante/${usuario.id}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
+        const datos = await api.get(
+            `/estadisticas/estudiante/${usuario.id}`
         );
-
-        const datos = await response.json();
 
         document.getElementById('pendientes').textContent =
             datos.pendientes || 0;
@@ -42,7 +39,9 @@ async function cargarEstadisticas() {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
+
+        alert(error.mensaje || error.message);
 
     }
 

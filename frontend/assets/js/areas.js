@@ -9,16 +9,7 @@ async function cargarAreas() {
 
     try {
 
-        const response = await fetch(
-            'http://localhost:3000/api/admin/areas',
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
-        );
-
-        const areas = await response.json();
+        const areas = await api.get('/admin/areas');
 
         const tabla =
             document.getElementById('tablaAreas');
@@ -70,7 +61,7 @@ async function cargarAreas() {
 
         console.log(error);
 
-        alert('Error cargando áreas');
+        alert(error.mensaje || error.message);
 
     }
 
@@ -82,24 +73,13 @@ form.addEventListener('submit', async (e) => {
 
     try {
 
-        const response = await fetch(
-            'http://localhost:3000/api/admin/areas',
+        const data = await api.post(
+            '/admin/areas',
             {
-                method: 'POST',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-
-                body: JSON.stringify({
-                    nombre:
-                        document.getElementById('nombreArea').value
-                })
+                nombre:
+                    document.getElementById('nombreArea').value
             }
         );
-
-        const data = await response.json();
 
         alert(data.mensaje);
 
@@ -112,7 +92,7 @@ form.addEventListener('submit', async (e) => {
 
         console.log(error);
 
-        alert('Error creando área');
+        alert(error.mensaje || error.message);
 
     }
 
@@ -122,23 +102,12 @@ async function cambiarEstado(id, estado) {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/admin/areas/${id}`,
+        const data = await api.put(
+            `/admin/areas/${id}`,
             {
-                method: 'PUT',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-
-                body: JSON.stringify({
-                    estado
-                })
+                estado
             }
         );
-
-        const data = await response.json();
 
         alert(data.mensaje);
 
@@ -149,7 +118,7 @@ async function cambiarEstado(id, estado) {
 
         console.log(error);
 
-        alert('Error actualizando área');
+        alert(error.mensaje || error.message);
 
     }
 

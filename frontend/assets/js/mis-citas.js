@@ -6,16 +6,9 @@ async function obtenerCitas() {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/citas/estudiante/${usuario.id}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
+        const citas = await api.get(
+            `/citas/estudiante/${usuario.id}`
         );
-
-        const citas = await response.json();
 
         console.log(citas);
 
@@ -65,9 +58,9 @@ async function obtenerCitas() {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error cargando citas');
+        alert(error.mensaje || error.message);
 
     }
 

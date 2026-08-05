@@ -8,16 +8,9 @@ async function obtenerCitas() {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/citas/coordinador/${usuario.id}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
+        const citas = await api.get(
+            `/citas/coordinador/${usuario.id}`
         );
-
-        const citas = await response.json();
 
         const tabla =
             document.getElementById('tablaCitas');
@@ -80,9 +73,9 @@ async function obtenerCitas() {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error obteniendo citas');
+        alert(error.mensaje || error.message);
 
     }
 
@@ -92,23 +85,12 @@ async function actualizarEstado(idCita, estado) {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/citas/${idCita}`,
+        const data = await api.put(
+            `/citas/${idCita}`,
             {
-                method: 'PUT',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-
-                body: JSON.stringify({
-                    estado
-                })
+                estado
             }
         );
-
-        const data = await response.json();
 
         alert(data.mensaje);
 
@@ -117,9 +99,9 @@ async function actualizarEstado(idCita, estado) {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error actualizando estado');
+        alert(error.mensaje || error.message);
 
     }
 

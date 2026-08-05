@@ -4,23 +4,25 @@ if (usuario.rol !== 'coordinador') {
 
 const logout = document.getElementById('logout');
 
-logout.addEventListener('click', () => {
+logout.addEventListener('click', cerrarSesion);
+
+function cerrarSesion() {
 
     localStorage.removeItem('usuario');
 
+    localStorage.removeItem('token');
+
     window.location.href = './login.html';
 
-});
+}
 
 async function cargarEstadisticas() {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/estadisticas/coordinador/${usuario.id}`
+        const datos = await api.get(
+            `/estadisticas/coordinador/${usuario.id}`
         );
-
-        const datos = await response.json();
 
         console.log(datos);
 
@@ -39,7 +41,9 @@ async function cargarEstadisticas() {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
+
+        alert(error.mensaje || error.message);
 
     }
 

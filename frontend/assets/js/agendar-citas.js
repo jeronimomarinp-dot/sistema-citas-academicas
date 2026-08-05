@@ -2,16 +2,9 @@ async function cargarCoordinadores() {
 
     try {
 
-        const response = await fetch(
-            'http://localhost:3000/api/coordinadores',
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
+        const coordinadores = await api.get(
+            '/coordinadores'
         );
-
-        const coordinadores = await response.json();
 
         const select =
             document.getElementById('coordinador');
@@ -29,9 +22,9 @@ async function cargarCoordinadores() {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error cargando coordinadores');
+        alert(error.mensaje || error.message);
 
     }
 
@@ -65,21 +58,10 @@ formCita.addEventListener('submit', async (e) => {
 
     try {
 
-        const response = await fetch(
-            'http://localhost:3000/api/citas',
-            {
-                method: 'POST',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-
-                body: JSON.stringify(cita)
-            }
+        const data = await api.post(
+            '/citas',
+            cita
         );
-
-        const data = await response.json();
 
         alert(data.mensaje);
 
@@ -87,9 +69,9 @@ formCita.addEventListener('submit', async (e) => {
 
     } catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error al crear cita');
+        alert(error.mensaje || error.message);
 
     }
 

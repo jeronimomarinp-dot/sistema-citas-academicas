@@ -3,63 +3,63 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mis Citas</title>
+    <title>Mis Citas</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body class="bg-light">
 
-<div class="container mt-5">
+    <div class="container mt-5">
 
-    <div class="card shadow p-4">
+        <div class="card shadow p-4">
 
-        <div class="d-flex justify-content-between mb-4">
+            <div class="d-flex justify-content-between mb-4">
 
-            <h2>Mis Citas </h2>
+                <h2>Mis Citas </h2>
 
-            <a href="./dashboard.estudiante.html"
-               class="btn btn-secondary">
-               Volver
-            </a>
+                <a href="./dashboard.estudiante.html" class="btn btn-secondary">
+                    Volver
+                </a>
+
+            </div>
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Coordinador</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaCitas">
+
+                </tbody>
+
+            </table>
 
         </div>
 
-        <table class="table table-bordered table-hover">
-
-            <thead class="table-dark">
-
-                <tr>
-
-                    <th>Coordinador</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Motivo</th>
-                    <th>Estado</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaCitas">
-
-            </tbody>
-
-        </table>
-
     </div>
 
-</div>
-
-<script src="../assets/js/auth.js"></script>
-<script src="../assets/js/mis-citas.js"></script>
-<script>
-    validarRol(['estudiante']);
-</script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/mis-citas.js"></script>
+    <script>
+        validarRol(['estudiante']);
+    </script>
 
 </body>
 

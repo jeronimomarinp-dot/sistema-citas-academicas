@@ -17,12 +17,39 @@ Funciones implementadas:
 Estado:
 FINALIZADO
 
----
 
-## Próximo módulo
+### Versión 1
 
-Migración completa del frontend a api.js.
+Backend
+✔ Login
+✔ Registro
+✔ Recuperación
+✔ CRUD de áreas
+✔ CRUD usuarios
+✔ CRUD citas
+✔ CRUD disponibilidad
 
-Posteriormente:
+Frontend
+✔ Login
+✔ Registro
+✔ Dashboards
+✔ CRUD áreas
+✔ CRUD usuarios
+✔ CRUD disponibilidad
+✔ Agendamiento
+✔ Migración completa a api.js
 
-Módulo de Disponibilidad del Coordinador.
+Arquitectura
+
+✔ api.js
+✔ JWT centralizado
+✔ Organización modular
+
+Estado
+
+Frontend estable
+Backend estable
+
+Próxima fase
+
+Integración Disponibilidad ↔ Agendamiento

@@ -9,17 +9,7 @@ async function obtenerUsuarios() {
 
     try {
 
-        const response = await fetch(
-            'http://localhost:3000/api/usuarios',
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
-        );
-
-
-        const usuarios = await response.json();
+        const usuarios = await api.get('/usuarios');
 
         const tabla =
             document.getElementById('tablaUsuarios');
@@ -88,9 +78,9 @@ async function obtenerUsuarios() {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error cargando usuarios');
+        alert(error.mensaje || error.message);
 
     }
 
@@ -110,23 +100,12 @@ async function cambiarRol(idUsuario) {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/usuarios/rol/${idUsuario}`,
+        const data = await api.put(
+            `/usuarios/rol/${idUsuario}`,
             {
-                method: 'PUT',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-
-                body: JSON.stringify({
-                    rol: nuevoRol
-                })
+                rol: nuevoRol
             }
         );
-
-        const data = await response.json();
 
         alert(data.mensaje);
 
@@ -135,9 +114,9 @@ async function cambiarRol(idUsuario) {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error actualizando rol');
+        alert(error.mensaje || error.message);
 
     }
 
@@ -150,23 +129,12 @@ async function cambiarEstado(idUsuario, estadoActual) {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:3000/api/usuarios/estado/${idUsuario}`,
+        const data = await api.put(
+            `/usuarios/estado/${idUsuario}`,
             {
-                method: 'PUT',
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-
-                body: JSON.stringify({
-                    activo: nuevoEstado
-                })
+                activo: nuevoEstado
             }
         );
-
-        const data = await response.json();
 
         alert(data.mensaje);
 
@@ -175,9 +143,9 @@ async function cambiarEstado(idUsuario, estadoActual) {
     }
     catch (error) {
 
-        console.log(error);
+        console.error(error);
 
-        alert('Error actualizando estado');
+        alert(error.mensaje || error.message);
 
     }
 
