@@ -55,13 +55,13 @@ async function actualizarDisponibilidad(id, coordinador_id, datos) {
     }
 
     const existeCruce =
-        await disponibilidadModel.existeCruceHorario(
-            coordinador_id,
-            datos.dia_semana,
-            hora_inicio,
-            hora_fin,
-            id
-        );
+    await disponibilidadModel.existeCruceHorario({
+        coordinador_id,
+        dia_semana: datos.dia_semana,
+        hora_inicio,
+        hora_fin,
+        id_excluir: id
+    });
 
     if (existeCruce.length > 0) {
 
@@ -83,6 +83,19 @@ async function actualizarDisponibilidad(id, coordinador_id, datos) {
 
 }
 
+async function actualizarEstadoDisponibilidad(id, estado) {
+
+    await disponibilidadModel.actualizarEstadoDisponibilidad(
+        id,
+        estado
+    );
+
+    return {
+        mensaje: 'Estado actualizado correctamente.'
+    };
+
+}
+
 async function eliminarDisponibilidad(id) {
 
     await disponibilidadModel.eliminarDisponibilidad(id);
@@ -93,9 +106,19 @@ async function eliminarDisponibilidad(id) {
 
 }
 
+async function obtenerDisponibilidadCoordinador(coordinador_id) {
+
+    return await disponibilidadModel.obtenerDisponibilidadPorCoordinador(
+        coordinador_id
+    );
+
+}
+
 module.exports = {
     crearDisponibilidad,
     obtenerDisponibilidad,
     actualizarDisponibilidad,
-    eliminarDisponibilidad
+    actualizarEstadoDisponibilidad,
+    eliminarDisponibilidad,
+    obtenerDisponibilidadCoordinador
 };

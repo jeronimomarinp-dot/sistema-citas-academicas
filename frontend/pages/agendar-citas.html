@@ -22,6 +22,22 @@
                 Agendar Nueva Cita
             </h2>
 
+            <div class="alert alert-info">
+
+                <strong>Antes de agendar tu cita:</strong>
+
+                consulta los materiales académicos disponibles.
+                Es posible que encuentres allí la respuesta
+                a tu duda.
+
+                <br><br>
+
+                <a href="./materiales-estudiante.html" class="btn btn-outline-primary">
+                    Consultar materiales académicos
+                </a>
+
+            </div>
+
             <a href="./dashboard.estudiante.html" class="btn btn-secondary">
                 Volver
             </a>
@@ -57,10 +73,14 @@
                 <div class="mb-3">
 
                     <label class="form-label">
-                        Hora
+                        Hora disponible
                     </label>
 
-                    <input type="time" class="form-control" id="hora" required>
+                    <select class="form-select" id="hora" required>
+                        <option value="">
+                            Seleccione una hora
+                        </option>
+                    </select>
 
                 </div>
 

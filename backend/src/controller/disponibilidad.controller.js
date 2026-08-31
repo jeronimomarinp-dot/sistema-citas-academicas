@@ -51,6 +51,33 @@ async function obtenerDisponibilidad(req, res) {
 
 }
 
+async function obtenerDisponibilidadPorCoordinador(req, res) {
+
+    try {
+
+        const coordinador_id =
+            req.params.id;
+
+        const disponibilidad =
+            await disponibilidadService.obtenerDisponibilidad(
+                coordinador_id
+            );
+
+        res.json(disponibilidad);
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            mensaje: 'Error obteniendo disponibilidad'
+        });
+
+    }
+
+}
+
 async function actualizarDisponibilidad(req, res) {
 
     try {
@@ -73,6 +100,34 @@ async function actualizarDisponibilidad(req, res) {
     } catch (error) {
 
         console.log(error);
+
+        res.status(500).json({
+            mensaje: error.message
+        });
+
+    }
+
+}
+
+async function actualizarEstadoDisponibilidad(req, res) {
+
+    try {
+
+        const { id } = req.params;
+
+        const { estado } = req.body;
+
+        const respuesta =
+            await disponibilidadService.actualizarEstadoDisponibilidad(
+                id,
+                estado
+            );
+
+        res.json(respuesta);
+
+    } catch (error) {
+
+        console.error(error);
 
         res.status(500).json({
             mensaje: error.message
@@ -107,6 +162,8 @@ async function eliminarDisponibilidad(req, res) {
 module.exports = {
     crearDisponibilidad,
     obtenerDisponibilidad,
+    obtenerDisponibilidadPorCoordinador,
     actualizarDisponibilidad,
+    actualizarEstadoDisponibilidad,
     eliminarDisponibilidad
 };

@@ -9,6 +9,11 @@ const testRoutes = require('./routes/test.routes');
 const citasRoutes = require('./routes/citas.routes');
 const areasRoutes = require('./routes/areas.routes');
 const disponibilidadRoutes = require('./routes/disponibilidad.routes');
+const materialesRoutes = require('./routes/materiales.routes');
+const googleCalendarRoutes = require('./routes/google-calendar.routes');
+const notificacionesRoutes = require('./routes/notificaciones.routes');
+const preguntasBotRoutes = require('./routes/preguntas-bot.routes');
+const chatbotRoutes = require('./routes/chatbot.routes');
 
 const app = express();
 
@@ -16,7 +21,9 @@ const app = express();
 require('./config/db');
 
 // middlewares
-app.use(cors());
+app.use(cors({
+    exposedHeaders: ['Content-Disposition']
+}));
 app.use(express.json());
 
 app.use(
@@ -31,6 +38,11 @@ app.use('/api', loginRoutes);
 app.use('/api', citasRoutes);
 app.use('/api', areasRoutes);
 app.use('/api/disponibilidad', disponibilidadRoutes);
+app.use('/api/materiales', materialesRoutes);
+app.use('/api/google-calendar', googleCalendarRoutes);
+app.use('/api', notificacionesRoutes);
+app.use('/api', preguntasBotRoutes);
+app.use('/api', chatbotRoutes);
 
 // puerto
 const PORT = process.env.PORT || 3000;

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Configurar Bot</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/global.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/dashboard.coordinador.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <!-- SIDEBAR -->
+
+            <div class="col-md-2 sidebar">
+
+                <h3>Coordinador</h3>
+
+
+                <a href="./dashboard.coordinador.html">
+
+                    <i class="bi bi-house"></i>
+
+                    Inicio
+
+                </a>
+
+
+                <a href="./ver-citas.html">
+
+                    <i class="bi bi-calendar-event"></i>
+
+                    Gestionar Citas
+
+                </a>
+
+
+                <a href="./disponibilidad.html">
+
+                    <i class="bi bi-clock-history"></i>
+
+                    Disponibilidad
+
+                </a>
+
+
+                <a href="./materiales-coordinador.html">
+
+                    <i class="bi bi-file-earmark-arrow-up"></i>
+
+                    Subir Documentos
+
+                </a>
+
+
+                <a href="./configurar-bot.html">
+
+                    <i class="bi bi-chat-square-text"></i>
+
+                    Configurar Bot
+
+                </a>
+
+
+                <a href="#" id="logout">
+
+                    <i class="bi bi-box-arrow-right"></i>
+
+                    Cerrar sesión
+
+                </a>
+
+            </div>
+
+
+            <!-- CONTENIDO -->
+
+            <div class="col-md-10 p-4">
+
+                <h2 class="mb-4">
+
+                    <i class="bi bi-robot"></i>
+
+                    Configurar Bot
+
+                </h2>
+
+
+                <p class="text-muted">
+
+                    Administra las preguntas y respuestas que utilizará
+                    el asistente académico para orientar a los estudiantes.
+
+                </p>
+
+
+                <!-- FORMULARIO -->
+
+                <div class="card mb-4">
+
+                    <div class="card-header">
+
+                        <h5 class="mb-0">
+
+                            <i class="bi bi-plus-circle"></i>
+
+                            Nueva pregunta
+
+                        </h5>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <form id="formPreguntaBot">
+
+
+                            <!-- ÁREA -->
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="area_id"
+                                    class="form-label"
+                                >
+
+                                    Área académica
+
+                                </label>
+
+
+                                <select
+                                    id="area_id"
+                                    class="form-select"
+                                    required
+                                >
+
+                                    <option value="">
+
+                                        Seleccione un área
+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- PREGUNTA -->
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="pregunta"
+                                    class="form-label"
+                                >
+
+                                    Pregunta
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="pregunta"
+                                    class="form-control"
+                                    placeholder="Ejemplo: ¿Cuál es el horario de atención?"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- RESPUESTA -->
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="respuesta"
+                                    class="form-label"
+                                >
+
+                                    Respuesta
+
+                                </label>
+
+
+                                <textarea
+                                    id="respuesta"
+                                    class="form-control"
+                                    rows="4"
+                                    placeholder="Escriba la respuesta que proporcionará el bot..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+
+                                <i class="bi bi-save"></i>
+
+                                Guardar pregunta
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="btnCancelar"
+                                class="btn btn-secondary d-none"
+                            >
+
+                                <i class="bi bi-x-circle"></i>
+
+                                Cancelar edición
+
+                            </button>
+
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LISTADO DE PREGUNTAS -->
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h5 class="mb-0">
+
+                            <i class="bi bi-list-ul"></i>
+
+                            Mis preguntas del bot
+
+                        </h5>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div
+                            id="mensajePreguntas"
+                            class="text-muted mb-3"
+                        >
+
+                            Cargando preguntas...
+
+                        </div>
+
+
+                        <div class="table-responsive">
+
+                            <table
+                                class="table table-bordered table-hover align-middle"
+                            >
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>Área</th>
+
+                                        <th>Pregunta</th>
+
+                                        <th>Respuesta</th>
+
+                                        <th>Estado</th>
+
+                                        <th>Acciones</th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="tablaPreguntasBot">
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/configurar-bot.js"></script>
+
+    <script>
+        validarRol(['coordinador']);
+    </script>
+
+
+</body>
+
+</html>

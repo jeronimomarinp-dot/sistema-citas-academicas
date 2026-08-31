@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Materiales Académicos</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <div
+                    class="d-flex justify-content-between align-items-center mb-4"
+                >
+
+                    <div>
+
+                        <h2>
+                            Materiales Académicos
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            Consulta estos documentos antes de agendar una cita.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="./dashboard.estudiante.html"
+                        class="btn btn-secondary"
+                    >
+                        Volver
+                    </a>
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Material
+                                </th>
+
+                                <th>
+                                    Descripción
+                                </th>
+
+                                <th>
+                                    Coordinador
+                                </th>
+
+                                <th>
+                                    Tipo
+                                </th>
+
+                                <th>
+                                    Acción
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tablaMateriales">
+
+                            <tr>
+
+                                <td
+                                    colspan="5"
+                                    class="text-center"
+                                >
+                                    Cargando materiales...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/materiales-estudiante.js"></script>
+
+    <script>
+
+        validarRol(['estudiante']);
+
+    </script>
+
+</body>
+
+</html>

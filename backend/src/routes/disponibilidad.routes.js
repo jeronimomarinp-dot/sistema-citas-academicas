@@ -22,11 +22,25 @@ router.get(
     disponibilidadController.obtenerDisponibilidad
 );
 
+router.get(
+    '/coordinador/:id',
+    verificarToken,
+    verificarRol('estudiante'),
+    disponibilidadController.obtenerDisponibilidadPorCoordinador
+);
+
 router.put(
     '/:id',
     verificarToken,
     verificarRol('coordinador'),
     disponibilidadController.actualizarDisponibilidad
+);
+
+router.put(
+    '/:id/estado',
+    verificarToken,
+    verificarRol('coordinador'),
+    disponibilidadController.actualizarEstadoDisponibilidad
 );
 
 router.delete(

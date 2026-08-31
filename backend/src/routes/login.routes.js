@@ -95,7 +95,8 @@ router.post('/login', (req, res) => {
                         id: usuario.id_usuario,
                         nombre: usuario.nombre,
                         correo: usuario.correo,
-                        rol: usuario.rol
+                        rol: usuario.rol,
+                        area_id: usuario.area_id
                     }
                 });
 

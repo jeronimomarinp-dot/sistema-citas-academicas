@@ -56,7 +56,7 @@ function obtenerDisponibilidadPorCoordinador(coordinador_id) {
     SELECT *
     FROM disponibilidad_coordinador
     WHERE coordinador_id = ?
-    AND activo = 1
+AND activo = 1
     ORDER BY
         FIELD(
             dia_semana,
@@ -99,6 +99,7 @@ function existeCruceHorario(datos) {
             WHERE coordinador_id = ?
               AND dia_semana = ?
               AND activo = 1
+              AND id_disponibilidad != ?
               AND (
                     (? < hora_fin)
                 AND (? > hora_inicio)
@@ -112,6 +113,7 @@ function existeCruceHorario(datos) {
             [
                 datos.coordinador_id,
                 datos.dia_semana,
+                datos.id_excluir || 0,
                 datos.hora_inicio,
                 datos.hora_fin
             ],
@@ -227,11 +229,40 @@ function eliminarDisponibilidad(id) {
 
 }
 
+function actualizarEstadoDisponibilidad(id, estado) {
+
+    return new Promise((resolve, reject) => {
+
+        const sql = `
+            UPDATE disponibilidad_coordinador
+            SET activo = ?
+            WHERE id_disponibilidad = ?
+        `;
+
+        connection.query(
+            sql,
+            [estado, id],
+            (error, resultado) => {
+
+                if (error) {
+                    return reject(error);
+                }
+
+                resolve(resultado);
+
+            }
+        );
+
+    });
+
+}
+
 module.exports = {
     crearDisponibilidad,
     obtenerDisponibilidadPorCoordinador,
     existeCruceHorario,
     actualizarDisponibilidad,
     obtenerDisponibilidadPorId,
-    eliminarDisponibilidad
+    eliminarDisponibilidad,
+    actualizarEstadoDisponibilidad
 };

@@ -1,9 +1,10 @@
+/* SIDEBAR */
+
 .sidebar {
     height: 100vh;
     background-color: #0f172a;
     color: white;
     padding: 20px;
-
 }
 
 
@@ -25,13 +26,28 @@
 }
 
 
-.card-dashboard {
+/* OPCIÓN ACTIVA DEL MENÚ */
+
+.sidebar a.active {
+    color: #38bdf8;
+}
+
+
+/* TARJETA DEL CHAT */
+
+.chatbot-card {
     border: none;
     border-radius: 18px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 
-.contador-notificaciones {
-    display: none;
+/* ÁREA DE CONVERSACIÓN */
+
+.chat-container {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
 }
