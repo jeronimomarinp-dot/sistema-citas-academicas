@@ -78,10 +78,9 @@ const procesarCallback = async (req, res) => {
             tokens
         );
 
-        return res.json({
-            mensaje: 'Google Calendar autorizado correctamente',
-            id_coordinador: datosState.id
-        });
+        return res.redirect(
+            'http://127.0.0.1:5500/sistema-citas-academicas/frontend/pages/dashboard.coordinador.html?google=success'
+        );;
 
     } catch (error) {
 

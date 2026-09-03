@@ -16,3 +16,6 @@ npm-debug.log*
 # Archivos del sistema
 .DS_Store
 Thumbs.db
+
+# Certificado SSL de TiDB Cloud
+backend/isrgrootx1.pem

@@ -504,26 +504,21 @@ router.post('/recuperar-password', (req, res) => {
 
         const token = crypto.randomBytes(32).toString('hex');
 
-        const expiracion = new Date(
-            Date.now() + 3600000
-        ); // 1 hora
-
         const sqlToken = `
-            INSERT INTO password_resets
-            (
-                usuario_id,
-                token,
-                expiracion
-            )
-            VALUES (?, ?, ?)
-        `;
+    INSERT INTO password_resets
+    (
+        usuario_id,
+        token,
+        expiracion
+    )
+    VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))
+`;
 
         connection.query(
             sqlToken,
             [
                 usuario.id_usuario,
-                token,
-                expiracion
+                token
             ],
             async (error) => {
 

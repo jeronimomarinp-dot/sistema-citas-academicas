@@ -8,22 +8,10 @@
 
     <title>Dashboard Coordinador</title>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    >
-    <link
-        rel="stylesheet"
-        href="../assets/css/global.css"
-    >
-    <link
-        rel="stylesheet"
-        href="../assets/css/dashboard.coordinador.css"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.coordinador.css">
 
 </head>
 
@@ -79,6 +67,42 @@
                 <h2 class="mb-4">
                     Bienvenido Coordinador
                 </h2>
+
+                <!-- GOOGLE CALENDAR -->
+
+                <div class="card mb-4">
+
+                    <div class="card-header">
+
+                        <h5 class="mb-0">
+
+                            <i class="bi bi-calendar-check"></i>
+
+                            Google Calendar
+
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <p id="estadoGoogleCalendar" class="mb-3">
+
+                            Comprobando conexión...
+
+                        </p>
+
+                        <button id="btnGoogleCalendar" class="btn btn-primary">
+
+                            <i class="bi bi-google"></i>
+
+                            Conectar Google Calendar
+
+                        </button>
+
+                    </div>
+
+                </div>
 
 
                 <!-- ESTADÍSTICAS -->
@@ -177,10 +201,7 @@
 
                             Notificaciones
 
-                            <span
-                                id="contadorNotificaciones"
-                                class="badge bg-danger contador-notificaciones"
-                            >
+                            <span id="contadorNotificaciones" class="badge bg-danger contador-notificaciones">
                                 0
                             </span>
 

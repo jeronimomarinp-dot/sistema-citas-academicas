@@ -50,3 +50,106 @@ async function cargarEstadisticas() {
 }
 
 cargarEstadisticas();
+
+// ==========================================
+// GOOGLE CALENDAR
+// ==========================================
+
+const btnGoogleCalendar =
+    document.getElementById('btnGoogleCalendar');
+
+const estadoGoogleCalendar =
+    document.getElementById('estadoGoogleCalendar');
+
+
+// CONECTAR GOOGLE CALENDAR
+
+btnGoogleCalendar.addEventListener(
+    'click',
+    async () => {
+
+        try {
+
+            const respuesta =
+                await api.get('/google-calendar/auth');
+
+            console.log(
+                'URL de autorización:',
+                respuesta.url
+            );
+
+            window.location.href =
+                respuesta.url;
+
+        }
+        catch (error) {
+
+            console.error(
+                'Error iniciando Google Calendar:',
+                error
+            );
+
+            alert(
+                error.mensaje ||
+                'No fue posible iniciar la conexión con Google Calendar'
+            );
+
+        }
+
+    }
+);
+
+
+// COMPROBAR CONEXIÓN
+
+async function comprobarGoogleCalendar() {
+
+    try {
+
+        await api.get('/google-calendar/test');
+
+        estadoGoogleCalendar.innerHTML = `
+            <span class="text-success">
+                <i class="bi bi-check-circle-fill"></i>
+                Google Calendar está conectado correctamente.
+            </span>
+        `;
+
+        btnGoogleCalendar.innerHTML = `
+            <i class="bi bi-check-circle"></i>
+            Google Calendar conectado
+        `;
+
+        btnGoogleCalendar.classList.remove(
+            'btn-primary'
+        );
+
+        btnGoogleCalendar.classList.add(
+            'btn-success'
+        );
+
+    }
+    catch (error) {
+
+        console.log(
+            'Google Calendar no está conectado.'
+        );
+
+        estadoGoogleCalendar.innerHTML = `
+            <span class="text-warning">
+                <i class="bi bi-exclamation-circle"></i>
+                Google Calendar no está conectado.
+            </span>
+        `;
+
+        btnGoogleCalendar.innerHTML = `
+            <i class="bi bi-google"></i>
+            Conectar Google Calendar
+        `;
+
+    }
+
+}
+
+
+comprobarGoogleCalendar();
