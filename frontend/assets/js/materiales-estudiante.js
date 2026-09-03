@@ -159,7 +159,7 @@ async function descargarMaterial(id) {
             localStorage.getItem('token');
 
         const respuesta = await fetch(
-            `http://localhost:3000/api/materiales/${id}/descargar`,
+            `https://sistema-citas-academicas-api.onrender.com/api/materiales/${id}/descargar`,
             {
                 method: 'GET',
 

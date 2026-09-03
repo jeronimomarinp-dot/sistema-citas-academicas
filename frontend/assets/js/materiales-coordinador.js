@@ -234,7 +234,7 @@ formMaterial.addEventListener(
 
 
             const respuesta = await fetch(
-                'http://localhost:3000/api/materiales',
+                'https://sistema-citas-academicas-api.onrender.com/api/materiales',
                 {
 
                     method: 'POST',
@@ -301,7 +301,7 @@ async function desactivarMaterial(id) {
     try {
 
         const respuesta = await fetch(
-            `http://localhost:3000/api/materiales/${id}/estado`,
+            `https://sistema-citas-academicas-api.onrender.com/api/materiales/${id}/estado`,
             {
 
                 method: 'PUT',
@@ -360,7 +360,7 @@ async function activarMaterial(id) {
     try {
 
         const respuesta = await fetch(
-            `http://localhost:3000/api/materiales/${id}/estado`,
+            `https://sistema-citas-academicas-api.onrender.com/api/materiales/${id}/estado`,
             {
 
                 method: 'PUT',
