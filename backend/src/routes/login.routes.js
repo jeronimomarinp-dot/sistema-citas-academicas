@@ -547,7 +547,7 @@ router.post('/recuperar-password', (req, res) => {
 
                             <p>Haz clic en el siguiente enlace para cambiar tu contraseña:</p>
 
-                           <a href="http://127.0.0.1:5500/sistema-citas-academicas/frontend/pages/nueva-password.html?token=${token}">
+                         <a href="https://sistema-citas-academicas-api.onrender.com/pages/nueva-password.html?token=${token}">
                              Restablecer contraseña
                             </a>
                             

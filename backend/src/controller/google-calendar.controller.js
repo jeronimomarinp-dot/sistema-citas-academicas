@@ -79,8 +79,8 @@ const procesarCallback = async (req, res) => {
         );
 
         return res.redirect(
-            'http://127.0.0.1:5500/sistema-citas-academicas/frontend/pages/dashboard.coordinador.html?google=success'
-        );;
+            'https://sistema-citas-academicas-api.onrender.com/pages/dashboard.coordinador.html?google=success'
+        );
 
     } catch (error) {
 
