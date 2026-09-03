@@ -37,21 +37,21 @@ loginForm.addEventListener('submit', async (e) => {
             if (data.usuario.rol === 'admin') {
 
                 window.location.href =
-                    './dashboard.admin.html';
+                    '/pages/dashboard.admin.html';
 
             }
 
             if (data.usuario.rol === 'coordinador') {
 
                 window.location.href =
-                    './dashboard.coordinador.html';
+                    '/pages/dashboard.coordinador.html';
 
             }
 
             if (data.usuario.rol === 'estudiante') {
 
                 window.location.href =
-                    './dashboard.estudiante.html';
+                    '/pages/dashboard.estudiante.html';
 
             }
 
