@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
     host: '99.83.147.192',
     port: process.env.DB_PORT || 4000,
     user: process.env.DB_USER,
@@ -16,16 +16,23 @@ const connection = mysql.createConnection({
         ),
         rejectUnauthorized: true,
         servername: process.env.DB_HOST
-    }
+    },
+
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 
-connection.connect((error) => {
+// Probar conexión inicial
+pool.getConnection((error, connection) => {
     if (error) {
         console.log('Error conectando a TiDB Cloud:', error);
         return;
     }
 
     console.log('TiDB Cloud conectado correctamente');
+
+    connection.release();
 });
 
-module.exports = connection;
+module.exports = pool;
