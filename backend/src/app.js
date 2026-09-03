@@ -26,6 +26,12 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, '../../frontend/pages/login.html')
+    );
+});
+
 app.use(
     express.static(
         path.join(__dirname, '../../frontend')
