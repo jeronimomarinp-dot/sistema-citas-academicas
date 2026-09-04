@@ -3,18 +3,12 @@ const router = express.Router();
 const connection = require('../config/db');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const jwt = require('jsonwebtoken');
 const verificarToken = require('../middleware/auth.middleware');
 const verificarRol = require('../middleware/roles.middleware');
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ENTRAR AL SISTEMA LOGIN
 router.post('/login', (req, res) => {
@@ -534,37 +528,38 @@ router.post('/recuperar-password', (req, res) => {
 
                 try {
 
-                    await transporter.sendMail({
-
-                        from: process.env.EMAIL_USER,
-
-                        to: correo,
-
+                    const { data, error: emailError } = await resend.emails.send({
+                        from: 'onboarding@resend.dev',
+                        to: [correo],
                         subject: 'Recuperación de contraseña',
-
                         html: `
-                            <h2>Hola ${usuario.nombre}</h2>
+        <h2>Hola ${usuario.nombre}</h2>
 
-                            <p>Haz clic en el siguiente enlace para cambiar tu contraseña:</p>
+        <p>Haz clic en el siguiente enlace para cambiar tu contraseña:</p>
 
-                         <a href="https://sistema-citas-academicas-api.onrender.com/pages/nueva-password.html?token=${token}">
-                             Restablecer contraseña
-                            </a>
-                            
-                        `
-
+        <a href="https://sistema-citas-academicas-api.onrender.com/pages/nueva-password.html?token=${token}">
+            Restablecer contraseña
+        </a>
+    `
                     });
 
-                    res.json({
-                        mensaje: 'Correo enviado correctamente'
-                    });
+                    if (emailError) {
+                        console.log(emailError);
 
+                        return res.status(500).json({
+                            mensaje: 'Error enviando correo de recuperación'
+                        });
+                    }
+                    return res.json({
+                        mensaje: 'Correo de recuperación enviado correctamente'
+                    });
                 }
+
                 catch (error) {
 
                     console.log(error);
 
-                    res.status(500).json({
+                    return res.status(500).json({
                         mensaje: 'Error enviando correo'
                     });
 
