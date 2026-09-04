@@ -108,12 +108,10 @@ const construirFechasEvento = (
             .split(':')
             .map(Number);
 
-    const inicio =
-        new Date(
-            `${fecha}T${horaInicio}:00-05:00`
-        );
-
-    if (isNaN(inicio.getTime())) {
+    if (
+        Number.isNaN(horas) ||
+        Number.isNaN(minutos)
+    ) {
 
         throw new Error(
             'La fecha o la hora de la cita no son válidas.'
@@ -121,53 +119,29 @@ const construirFechasEvento = (
 
     }
 
-    const fin =
-        new Date(
-            inicio.getTime() +
-            (duracion * 60 * 1000)
+    const minutosTotales =
+        (horas * 60) +
+        minutos +
+        Number(duracion);
+
+    const horasFin =
+        Math.floor(
+            minutosTotales / 60
         );
 
-    const formatearFecha =
-        (fechaObjeto) => {
+    const minutosFin =
+        minutosTotales % 60;
 
-            const año =
-                fechaObjeto.getFullYear();
-
-            const mes =
-                String(
-                    fechaObjeto.getMonth() + 1
-                ).padStart(2, '0');
-
-            const dia =
-                String(
-                    fechaObjeto.getDate()
-                ).padStart(2, '0');
-
-            const horas =
-                String(
-                    fechaObjeto.getHours()
-                ).padStart(2, '0');
-
-            const minutos =
-                String(
-                    fechaObjeto.getMinutes()
-                ).padStart(2, '0');
-
-            const segundos =
-                String(
-                    fechaObjeto.getSeconds()
-                ).padStart(2, '0');
-
-            return `${año}-${mes}-${dia}T${horas}:${minutos}:${segundos}`;
-        };
+    const horaFin =
+        `${String(horasFin).padStart(2, '0')}:${String(minutosFin).padStart(2, '0')}:00`;
 
     return {
 
         inicio:
-            formatearFecha(inicio),
+            `${fecha}T${horaInicio}:00`,
 
         fin:
-            formatearFecha(fin)
+            `${fecha}T${horaFin}`
 
     };
 
